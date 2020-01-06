@@ -16,8 +16,9 @@
 
 <body>
 
+<?php require_once 'src/process.php' ?>
     <div class="row justify-content-center">
-        <form action="" method="POST">
+        <form action="process.php" method="POST">
             <div class="form-group">
                 <label>Name :</label>
                 <input type="text" name="name" class="form-control" value="Enter your name">
