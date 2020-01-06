@@ -16,12 +16,28 @@
 
 <body>
 
-    <?php require_once 'process.php' ?>
+    <?php require_once 'process.php'; ?>
+
+    <?php
+
+    if (isset($_SESSION['message'])) : ?>
+
+        <div class="alert alert-<?= $_SESSION['msg_type'] ?>">
+
+            <?php
+
+            echo $_SESSION['message'];
+            unset($_SESSION['message']);
+            ?>
+        </div>
+
+    <?php endif; ?>
+
     <div class="container">
         <?php
         $severname = "den1.mysql1.gear.host";
         $username = "phpcrud";
-        $password = " ";
+        $password = "";
         $dbname = "phpcrud";
 
         $connection = new mysqli($severname, $username, $password, $dbname) or die($connection);
@@ -48,10 +64,8 @@
                         <td><?php echo $row['Name']; ?></td>
                         <td><?php echo $row['Location']; ?></td>
                         <td>
-                            <a href="index.php?edit=<?php echo $row['id']; ?>"
-                            class="btn btn-info">Edit</a>
-                            <a href="index.php?delete=<?php echo $row['id']; ?>"
-                            class="btn btn-danger">Delete</a>
+                            <a href="index.php?edit=<?php echo $row['id']; ?>" class="btn btn-info">Edit</a>
+                            <a href="index.php?delete=<?php echo $row['id']; ?>" class="btn btn-danger">Delete</a>
                         </td>
                     </tr>
                 <?php endwhile; ?>
