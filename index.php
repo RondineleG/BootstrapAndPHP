@@ -10,10 +10,13 @@
 </head>
 
 <body>
-    <?php
-
-    ?>
-
+    <form action="" method="POST">
+     <label>Name :</label>
+    <input type="text" name="name" value="Enter your name">
+    <label>Location :</label>
+    <input type="text" name="location" value="Enter your location">
+    <button type="submit" name="save">Save</button>
+    </form>
      
          <script src="/src/js/main.js"></script>     
 </body>
