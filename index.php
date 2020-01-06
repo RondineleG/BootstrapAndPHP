@@ -16,7 +16,52 @@
 
 <body>
 
-<?php require_once 'process.php' ?>
+    <?php require_once 'process.php' ?>
+    <?php
+    $severname = "den1.mysql1.gear.host";
+    $username = "phpcrud";
+    $password = "";
+    $dbname = "phpcrud";
+
+    $connection = new mysqli($severname, $username, $password, $dbname) or die($connection);
+    $result = $connection->query("SELECT * FROM phpcrud.data ") or die($connection->error);
+    //pre_r($result);
+    //pre_r($result->fetch_assoc());
+    //pre_r($result->fetch_assoc());
+
+    ?>
+
+    <div class="row justify-content-center">
+        <table class="table ">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Location</th>
+                    <th colspan="2">Action</th>
+                </tr>
+            </thead>
+            <?php
+
+            while ($row = $result->fetch_assoc()) : ?>
+                <tr>
+                    <td><?php echo $row['Name']; ?></td>
+                    <td><?php echo $row['Location']; ?></td>
+                    <td></td>
+                </tr>
+            <?php endwhile;?>
+        </table>
+    </div>
+
+    <?php
+
+    function pre_r($array)
+    {
+        echo '<pre>';
+        print_r($array);
+        echo '</pre>';
+    }
+
+    ?>
     <div class="row justify-content-center">
         <form action="process.php" method="POST">
             <div class="form-group">
