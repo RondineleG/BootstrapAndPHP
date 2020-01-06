@@ -16,17 +16,17 @@
 
 <body>
 
-<?php require_once 'src/process.php' ?>
+<?php require_once 'process.php' ?>
     <div class="row justify-content-center">
         <form action="process.php" method="POST">
             <div class="form-group">
                 <label>Name :</label>
-                <input type="text" name="name" class="form-control" value="Enter your name">
+                <input type="text" name="name" class="form-control" placeholder="Enter your name">
             </div>
 
             <div class="form-group">
                 <label>Location :</label>
-                <input type="text" name="location" class="form-control" value="Enter your location">
+                <input type="text" name="location" class="form-control" placeholder="Enter your location">
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary" name="save">Save</button>
