@@ -17,67 +17,76 @@
 <body>
 
     <?php require_once 'process.php' ?>
-    <?php
-    $severname = "den1.mysql1.gear.host";
-    $username = "phpcrud";
-    $password = "";
-    $dbname = "phpcrud";
+    <div class="container">
+        <?php
+        $severname = "den1.mysql1.gear.host";
+        $username = "phpcrud";
+        $password = " ";
+        $dbname = "phpcrud";
 
-    $connection = new mysqli($severname, $username, $password, $dbname) or die($connection);
-    $result = $connection->query("SELECT * FROM phpcrud.data ") or die($connection->error);
-    //pre_r($result);
-    //pre_r($result->fetch_assoc());
-    //pre_r($result->fetch_assoc());
+        $connection = new mysqli($severname, $username, $password, $dbname) or die($connection);
+        $result = $connection->query("SELECT * FROM phpcrud.data ") or die($connection->error);
+        //pre_r($result);
+        //pre_r($result->fetch_assoc());
+        //pre_r($result->fetch_assoc());
 
-    ?>
+        ?>
 
-    <div class="row justify-content-center">
-        <table class="table ">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Location</th>
-                    <th colspan="2">Action</th>
-                </tr>
-            </thead>
-            <?php
+        <div class="row justify-content-center">
+            <table class="table ">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Location</th>
+                        <th colspan="2">Action</th>
+                    </tr>
+                </thead>
+                <?php
 
-            while ($row = $result->fetch_assoc()) : ?>
-                <tr>
-                    <td><?php echo $row['Name']; ?></td>
-                    <td><?php echo $row['Location']; ?></td>
-                    <td></td>
-                </tr>
-            <?php endwhile;?>
-        </table>
+                while ($row = $result->fetch_assoc()) : ?>
+                    <tr>
+                        <td><?php echo $row['Name']; ?></td>
+                        <td><?php echo $row['Location']; ?></td>
+                        <td>
+                            <a href="index.php?edit=<?php echo $row['id']; ?>"
+                            class="btn btn-info">Edit</a>
+                            <a href="index.php?delete=<?php echo $row['id']; ?>"
+                            class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                <?php endwhile; ?>
+            </table>
+        </div>
+
+        <?php
+
+        function pre_r($array)
+        {
+            echo '<pre>';
+            print_r($array);
+            echo '</pre>';
+        }
+
+        ?>
+        <div class="row justify-content-center">
+            <form action="process.php" method="POST">
+                <div class="form-group">
+                    <label>Name :</label>
+                    <input type="text" name="name" class="form-control" placeholder="Enter your name">
+                </div>
+
+                <div class="form-group">
+                    <label>Location :</label>
+                    <input type="text" name="location" class="form-control" placeholder="Enter your location">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" name="save">Save</button>
+                </div>
+            </form>
+
+        </div>
     </div>
 
-    <?php
-
-    function pre_r($array)
-    {
-        echo '<pre>';
-        print_r($array);
-        echo '</pre>';
-    }
-
-    ?>
-    <div class="row justify-content-center">
-        <form action="process.php" method="POST">
-            <div class="form-group">
-                <label>Name :</label>
-                <input type="text" name="name" class="form-control" placeholder="Enter your name">
-            </div>
-
-            <div class="form-group">
-                <label>Location :</label>
-                <input type="text" name="location" class="form-control" placeholder="Enter your location">
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary" name="save">Save</button>
-            </div>
-        </form>
-    </div>
 
     <script src="/src/js/main.js"></script>
 </body>

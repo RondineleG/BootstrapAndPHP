@@ -28,4 +28,10 @@ if (isset($_POST['save'])) {
             print "Error  " . $sql . "<br>" . $connection->connect_error;
 }
 
+if (isset($_GET['delete']))
+{
+    $id = $_GET['delete'];
+    $connection->query("DELETE FROM phpcrud.data WHERE id=$id") or die($connection->error);
+}
+
 $connection->close();
